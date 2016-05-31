@@ -53,7 +53,7 @@ function set_ipalias($ip, $netmask, $if, $action = '') {
   return $_exit_status; 
 }
 
-/* Start OpenVPN clients running on this VIP, since they should be in the stopped state while the VIP is CARP Backup. */
+/* Restart OpenVPN server/client because these OpenVPN processes should be in stop state before the IP alias VIP attached to the server. */
 function restart_openvpn($ip) {
   global $config;
   $_ipv4_regex = "/local[ ]+$ip/";
@@ -88,7 +88,7 @@ function do_action($ip, $netmask, $if, $action) {
 }
 
 if ($argc != 3) {
-  log_error("No argument supplied to $argv[0]");
+  log_error("Wrong argument passed to $argv[0]");
   usage();
 }
 
